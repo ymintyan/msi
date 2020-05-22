@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState,useEffect} from 'react';
 import './App.css';
+import JokesList from './JokesList';
+import JokeSelect from './JokeSelect';
+import Favourites from './Favourites';
+import {getJokeCategories} from './api';
 
 function App() {
+  const [apiJokes, setApiJokes] = useState([]);
+  const [apiCategories, setApiCategories] =  useState([]);
+  const [reqErrorMsg, setErrorMsg] = useState('');
+ 
+  useEffect(function(){
+    getJokeCategories()
+    .then(
+      (response) => response.json()
+    )
+    .then(
+      (response) => {
+        if(!apiCategories.length) setApiCategories(response);
+      }
+    )}, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="main-wrapper">
+        <h2 className="main-title">MSI 2020</h2>
+        <p className="greeting-title">Hey!</p>
+        <p className="greeting-text">Let’s try to find a joke for you:</p>
+        <JokeSelect setApiJokes={setApiJokes} setErrorMsg={setErrorMsg} jokeCategories={apiCategories} />
+        <JokesList jokes={apiJokes} errorMsg={reqErrorMsg}/>
+      </div>
+      <div className="favourites-wrapper">
+        <Favourites/>
+      </div>
     </div>
   );
 }
