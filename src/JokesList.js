@@ -3,7 +3,7 @@ import Joke from './Joke';
 import './JokesList.css';
 
 function JokesList(props) {
-    const {jokes,errorMsg} = props;
+    const {jokes, errorMsg, setFavJokes} = props;
     console.log({jokes})
 
     if (errorMsg) return <div className="error-message">{errorMsg}</div>
@@ -11,12 +11,12 @@ function JokesList(props) {
     return jokes.result ? ( jokes.total ? (
         <div className="jokes-list">
             {jokes.result.map((joke)=>{
-                return <Joke data={joke} key={joke.id} />
+                return <Joke data={joke} key={joke.id} setFavJokes={setFavJokes} />
             })}
         </div>
     ) : <div>No results</div>)
     : <div className="jokes-list">
-        <Joke data={jokes} />    
+        <Joke data={jokes} setFavJokes={setFavJokes} />    
     </div>;
 }
 

@@ -3,13 +3,16 @@ import './App.css';
 import JokesList from './JokesList';
 import JokeSelect from './JokeSelect';
 import Favourites from './Favourites';
-import {getJokeCategories} from './api';
+import {getJokeCategories, getFavouriteJokesFromLS} from './api';
 
 function App() {
   const [apiJokes, setApiJokes] = useState([]);
   const [apiCategories, setApiCategories] =  useState([]);
   const [reqErrorMsg, setErrorMsg] = useState('');
- 
+  const favouriteJokesFromLS = getFavouriteJokesFromLS();
+  const [favouriteJokes, setFavJokes] = useState(favouriteJokesFromLS);
+  
+
   useEffect(function(){
     getJokeCategories()
     .then(
@@ -28,10 +31,10 @@ function App() {
         <p className="greeting-title">Hey!</p>
         <p className="greeting-text">Let’s try to find a joke for you:</p>
         <JokeSelect setApiJokes={setApiJokes} setErrorMsg={setErrorMsg} jokeCategories={apiCategories} />
-        <JokesList jokes={apiJokes} errorMsg={reqErrorMsg}/>
+        <JokesList jokes={apiJokes} favJokes={favouriteJokes} setFavJokes={setFavJokes} errorMsg={reqErrorMsg}/>
       </div>
       <div className="favourites-wrapper">
-        <Favourites/>
+        <Favourites jokes={favouriteJokes} setFavJokes={setFavJokes}/>
       </div>
     </div>
   );

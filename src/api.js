@@ -22,3 +22,24 @@ export function getJoke(type, data) {
 export function getJokeCategories() {
     return fetch(`${apiUrl}/categories`);
 }
+
+export function getFavouriteJokesFromLS(){
+    const jokes = localStorage.getItem('favourite_jokes');
+    
+    if(!jokes) {
+        return [];
+    }
+
+    return JSON.parse(jokes);
+}
+
+export function setFavouriteJokesToLS(jokes){
+    const jokesFromLS = getFavouriteJokesFromLS();
+    
+    if(!jokesFromLS.length) {
+        localStorage.setItem('favourite_jokes', JSON.stringify(jokes))
+    } else {
+        const jokesUpdated = [...jokes];
+        localStorage.setItem('favourite_jokes', JSON.stringify(jokesUpdated));
+    }
+}

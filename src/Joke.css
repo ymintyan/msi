@@ -1,9 +1,23 @@
 .joke-wrapper {
+    position: relative;
     min-height: 180px;
     padding: 40px;
     padding-left: 90px;
     background: #F8F8F8;
     border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.joke-wrapper-fav {
+    position: relative;
+    min-height: 180px;
+    padding: 40px;
+    padding-left: 90px;
+    background: #FFFFFF;
+    border: 1px solid #F8F8F8;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
@@ -44,14 +58,22 @@
     background-image: url('./message.png');
 }
 
-.joke-value:after {
-    content: '';
+.joke-wrapper-fav .joke-value:before {
+    background-image: url('./grey_message.png');
+}
+
+.joke-favourite, .joke-favourite-selected {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: 30px;
+    right: 40px;
     width: 20px;
     height: 17px;
     background-image: url('./heart_transparent.png');
+    cursor: pointer;
+}
+
+.joke-favourite-selected {
+    background-image: url('./heart.png');
 }
 
 .joke-updatedAt {
