@@ -19,8 +19,7 @@ function Joke({data, setFavJokes, isCustomStyle, isSearchedJokeInFav}) {
         jokesFromLS.forEach(joke => {
             if(joke.id === id) isRepeated = true;
         })
-        console.log({isCustomStyle,isRepeated})
-
+        
         if(isRepeated){
             const jokes = getFavouriteJokesFromLS();
             let indexToDelete;
@@ -29,8 +28,9 @@ function Joke({data, setFavJokes, isCustomStyle, isSearchedJokeInFav}) {
                    indexToDelete = i;
                }
             })
+
             jokes.splice(indexToDelete,1);
-            console.log('splice',jokes)
+        
             setFavouriteJokesToLS(jokes);
             setFavJokes(jokes);
         } else {
@@ -40,34 +40,13 @@ function Joke({data, setFavJokes, isCustomStyle, isSearchedJokeInFav}) {
             const jokes = getFavouriteJokesFromLS();
             setFavJokes(jokes);
         }
-
-        // if(!isCustomStyle){
-        //     const jokesFromLS = getFavouriteJokesFromLS();
-        //     jokesFromLS.push(data);
-        //     setFavouriteJokesToLS(jokesFromLS);
-        //     const jokes = getFavouriteJokesFromLS();
-        //     setFavJokes(jokes);
-        // } else {
-        //     const jokes = getFavouriteJokesFromLS();
-        //     let indexToDelete;
-        //     jokes.forEach((joke,i) => {
-        //        if(joke.id === id) {
-        //            indexToDelete = i;
-        //        }
-        //     })
-        //     jokes.splice(indexToDelete,1);
-        //     console.log('splice',jokes)
-        //     setFavouriteJokesToLS(jokes);
-        //     setFavJokes(jokes);
-        // }
         
     };
     
     if(data.length === 0) return null;
     
     const updatedHrsAgo = date(updated_at);
-
-    console.log(id,data);
+    
     return (
         <div className={isCustomStyle ? "joke-wrapper-fav" : "joke-wrapper"}>
            <div className="joke-link">

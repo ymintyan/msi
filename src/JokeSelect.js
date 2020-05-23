@@ -22,31 +22,25 @@ function JokeSelect(props) {
         category: false,
         search: false
     })
-    console.log('init joke select')
-
+    
     const handleCategorySelecting = (category) => {
         const selectedCategories = {...categories};
-        console.log('st',{category,categories,selectedCategories},selectedCategories.hasOwnProperty(category))
-        
+                
         if(categories.hasOwnProperty(category)) {
             delete selectedCategories[category];
             setCategories({...selectedCategories});
-            console.log('if',{category,categories,selectedCategories})
             return;
         }
         selectedCategories[category] = true;
         setCategories({...selectedCategories});
-        console.log('e',{category,categories,selectedCategories})
     };
 
     const handleInput = (e) => {
         setSearchText(e.target.value);
     };
-    
-    console.log('pp',{props});
-    
+      
     const handleChange = (e) => {
-        console.log(e.target);
+
         setJokeType(e.target.value);
 
         if(e.target.value === 'random') setControlsVisibility({
@@ -66,7 +60,7 @@ function JokeSelect(props) {
     };
 
     const handleClick = (e) => {
-        console.log('CLICK', categories)
+        
         const jokes = getJoke(jokeType, { searchText,selectedCategories:categories }).then(
             response => response.json())
         .then(
@@ -80,8 +74,8 @@ function JokeSelect(props) {
                 return response;
             }
         );
-        console.log(jokes);
     };
+    
     return (
         <div>
             <FormControl component="fieldset" fullWidth={true}>

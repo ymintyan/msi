@@ -8,7 +8,6 @@ function SingleCategory(props) {
     
     const handleClick = (e) => {
         e.stopPropagation();
-        console.log(isSelected);
         toggleState({selected: !isSelected.selected});
         selectHandler(data);
     };

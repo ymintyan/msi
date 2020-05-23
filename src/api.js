@@ -2,7 +2,7 @@ const apiUrl = 'https://api.chucknorris.io/jokes';
 
 export function getJoke(type, data) {
     const {searchText, selectedCategories} = data;
-    console.log({selectedCategories})
+
     let path = '';
     switch(type) {
         case 'random':

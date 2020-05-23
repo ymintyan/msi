@@ -8,7 +8,6 @@ function Favourites(props) {
         document.getElementById('favourite-inner').classList.toggle('show');
     };
 
-    console.log({ls: jokes})
     return (
         <div>
             <div className="favourite-secondary-title">Favourite</div>
@@ -24,8 +23,7 @@ function Favourites(props) {
                         jokes.length ? 
                         <div>
                             {jokes.map(joke => {
-                                console.log('jj',joke);
-                            return <Joke data={joke} setFavJokes={setFavJokes} isCustomStyle={true} key={joke.id} />
+                                return <Joke data={joke} setFavJokes={setFavJokes} isCustomStyle={true} key={joke.id} />
                             })
                             }
                         </div> :

@@ -4,8 +4,7 @@ import './JokesList.css';
 
 function JokesList(props) {
     const {jokes, errorMsg, setFavJokes, favJokes} = props;
-    console.log('list',{jokes});
-
+    
     const isSearchedJokeInFav = joke => {
         console.warn('SINGLE',joke)
         for (let i = 0; i < favJokes.length; i++) {
