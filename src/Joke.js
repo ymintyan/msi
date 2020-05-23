@@ -4,7 +4,7 @@ import date from './date';
 import {setFavouriteJokesToLS,getFavouriteJokesFromLS} from './api';
 import './Joke.css';
 
-function Joke({data, setFavJokes, isCustomStyle}) {
+function Joke({data, setFavJokes, isCustomStyle, isSearchedJokeInFav}) {
     const {
         updated_at,
         value,
@@ -14,13 +14,14 @@ function Joke({data, setFavJokes, isCustomStyle}) {
     } = data;
 
     const handleClick = e => {
-        if(!isCustomStyle){
-            const jokesFromLS = getFavouriteJokesFromLS();
-            jokesFromLS.push(data);
-            setFavouriteJokesToLS(jokesFromLS);
-            const jokes = getFavouriteJokesFromLS();
-            setFavJokes(jokes);
-        } else {
+        const jokesFromLS = getFavouriteJokesFromLS();
+        let isRepeated = false;
+        jokesFromLS.forEach(joke => {
+            if(joke.id === id) isRepeated = true;
+        })
+        console.log({isCustomStyle,isRepeated})
+
+        if(isRepeated){
             const jokes = getFavouriteJokesFromLS();
             let indexToDelete;
             jokes.forEach((joke,i) => {
@@ -32,7 +33,33 @@ function Joke({data, setFavJokes, isCustomStyle}) {
             console.log('splice',jokes)
             setFavouriteJokesToLS(jokes);
             setFavJokes(jokes);
+        } else {
+            const jokesFromLS = getFavouriteJokesFromLS();
+            jokesFromLS.push(data);
+            setFavouriteJokesToLS(jokesFromLS);
+            const jokes = getFavouriteJokesFromLS();
+            setFavJokes(jokes);
         }
+
+        // if(!isCustomStyle){
+        //     const jokesFromLS = getFavouriteJokesFromLS();
+        //     jokesFromLS.push(data);
+        //     setFavouriteJokesToLS(jokesFromLS);
+        //     const jokes = getFavouriteJokesFromLS();
+        //     setFavJokes(jokes);
+        // } else {
+        //     const jokes = getFavouriteJokesFromLS();
+        //     let indexToDelete;
+        //     jokes.forEach((joke,i) => {
+        //        if(joke.id === id) {
+        //            indexToDelete = i;
+        //        }
+        //     })
+        //     jokes.splice(indexToDelete,1);
+        //     console.log('splice',jokes)
+        //     setFavouriteJokesToLS(jokes);
+        //     setFavJokes(jokes);
+        // }
         
     };
     
@@ -46,7 +73,7 @@ function Joke({data, setFavJokes, isCustomStyle}) {
            <div className="joke-link">
                 ID: <a href={`${url}`} target="_blank">{id}</a>
            </div>
-           <div className={isCustomStyle ? "joke-favourite-selected" : "joke-favourite"} onClick={handleClick}></div>
+           <div className={ isCustomStyle || isSearchedJokeInFav ? "joke-favourite-selected" : "joke-favourite"} onClick={handleClick}></div>
            <div className="joke-value">
                 {value}
            </div>
