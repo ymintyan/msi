@@ -6,9 +6,8 @@ function JokesList(props) {
     const {jokes, errorMsg, setFavJokes, favJokes} = props;
     
     const isSearchedJokeInFav = joke => {
-        console.warn('SINGLE',joke)
+        
         for (let i = 0; i < favJokes.length; i++) {
-            console.warn('SINGLE',joke.id , favJokes[i].id)
             if(joke.id === favJokes[i].id) {
                 return true;
             } 
