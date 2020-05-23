@@ -14,7 +14,7 @@ function JokesList(props) {
                 return <Joke data={joke} key={joke.id} setFavJokes={setFavJokes} />
             })}
         </div>
-    ) : <div>No results</div>)
+    ) : <div className="error-message">No results</div>)
     : <div className="jokes-list">
         <Joke data={jokes} setFavJokes={setFavJokes} />    
     </div>;

@@ -101,3 +101,9 @@
     text-transform: uppercase;
     color: #333333;
 }
+
+@media (max-width: 500px) {
+    .joke-wrapper-fav {
+      padding-left: 60px;
+    }
+  }

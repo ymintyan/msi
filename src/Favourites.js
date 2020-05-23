@@ -3,24 +3,36 @@ import Joke from './Joke';
 
 function Favourites(props) {
     const {jokes,setFavJokes} = props;
+
+    const handleClick = e => {
+        document.getElementById('favourite-inner').classList.toggle('show');
+    };
+
     console.log({ls: jokes})
     return (
-        <div>  
-            <h3 className="favourite-title">
-                Favourite
-            </h3>
-            {
-                jokes.length ? 
-                <div>
-                    {jokes.map(joke => {
-                        console.log('jj',joke);
-                    return <Joke data={joke} setFavJokes={setFavJokes} isCustomStyle={true} key={joke.id} />
-                    })
+        <div>
+            <div className="favourite-secondary-title">Favourite</div>
+            <div className="favourite-menu-btn" onClick={handleClick}></div>
+            <div id="favourite-inner" className="favourite-inner">
+                <div className="favourite-inner-wrapper">
+                <div className="favourite-menu-btn" onClick={handleClick}></div>
+                <div className="favourite-secondary-title">Favourite</div>
+                    <h3 className="favourite-title">
+                        Favourite
+                    </h3>
+                    {
+                        jokes.length ? 
+                        <div>
+                            {jokes.map(joke => {
+                                console.log('jj',joke);
+                            return <Joke data={joke} setFavJokes={setFavJokes} isCustomStyle={true} key={joke.id} />
+                            })
+                            }
+                        </div> :
+                        null
                     }
-                
-                </div> :
-                null
-            }
+                </div>
+            </div>
         </div>  
     );
 }

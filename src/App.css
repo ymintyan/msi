@@ -42,6 +42,7 @@
 }
 
 .container {
+  position: relative;
   display: flex;
   width: 100%;
   min-height: 100%;
@@ -49,8 +50,8 @@
 }
 
 .main-wrapper {
-  flex: 1.5;
-  padding-top: 40px;
+  flex: 1;
+  padding-top: 30px;
   padding-left: 140px;
   padding-right: 140px;
 }
@@ -89,7 +90,7 @@
 }
 
 .favourites-wrapper {
-  flex: 1;
+  flex: 0.75;
   background-color: #F8F8F8;
   padding: 40px;
 }
@@ -100,6 +101,94 @@
   font-size: 20px;
   line-height: 28px;
   margin-bottom: 20px;
+}
+.favourite-secondary-title {
+  display: none;
+  float: right;
+}
+.favourite-menu-btn {
+  cursor: pointer;
+  display: none;
+  float: right;
+  width: 28px;
+  height: 28px;
+  background-image: url('./menu_btn.png');
+}
+
+@media (max-width: 1200px) {
+  .main-wrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .favourites-wrapper {
+    flex: 1;
+  }
+}
+@media (max-width: 840px) {
+  .container {
+    display: block;
+  }
+  .favourite-title {
+    display: none;
+  }
+  .favourite-secondary-title {
+    color: #ABABAB;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: inline-block;
+  }
+  .favourites-wrapper {
+    background: transparent;
+  }
+  .main-wrapper {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .favourite-inner {
+    display: flex;
+    flex-flow: row-reverse;
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    visibility: hidden;
+  }
+  .favourite-inner.show {
+    visibility: visible;
+  }
+  .favourite-menu-btn {
+    position: absolute;
+    top: 30px;
+    right: 120px;
+    display: inline-block;
+  }
+  .favourite-inner.show .favourite-menu-btn {
+   background-image: url('./close_btn.png');
+  }
+  .favourite-inner-wrapper {
+    background-color: #F8F8F8;
+    width: 75%;
+    padding: 30px;
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .favourite-inner-wrapper {
+    width: 100%;
+  }
 }
 
 .error-message {
