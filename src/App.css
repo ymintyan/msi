@@ -174,10 +174,12 @@
    background-image: url('./close_btn.png');
   }
   .favourite-inner-wrapper {
+    position: relative;
     background-color: #F8F8F8;
     width: 75%;
     padding: 30px;
     padding-top: 80px;
+    overflow-y: auto;
   }
 }
 
