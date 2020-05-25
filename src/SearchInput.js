@@ -12,13 +12,14 @@ const styles = theme => ({
 });
 
 function SearchInput(props) {
-    const {isVisible, handleInput, classes} = props;
+    const {isVisible, handleInput, classes, text} = props;
     
     return isVisible ? (
         <div className="search-wrapper">
             <TextField id='search-input' size="small"  fullWidth={true} 
             placeholder="Free text search..." 
-            onChange={handleInput} 
+            onChange={handleInput}
+            value={text} 
             className={classes.textField}
             InputProps={{
                 disableUnderline: true

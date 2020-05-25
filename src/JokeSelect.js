@@ -84,7 +84,7 @@ function JokeSelect(props) {
                     <FormControlLabel value="category" control={<Radio className='custom-color' />} label="From categories" />
                     <JokeCategoriesContainer handleCategorySelecting={handleCategorySelecting} isVisible={controlsVisibility.category} selectedCategories={categories} categories={jokeCategories} />
                     <FormControlLabel value="search" control={<Radio className='custom-color' />} label="Search" />
-                    <SearchInput handleInput={handleInput} isVisible={controlsVisibility.search} />
+                    <SearchInput handleInput={handleInput} text={searchText} isVisible={controlsVisibility.search} />
                 </RadioGroup>
             </FormControl>
             <BtnWrapper handleClick={handleClick} />
